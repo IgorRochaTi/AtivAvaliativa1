@@ -1,0 +1,70 @@
+/*Faça um programa que receba um número de três dígitos e verifique:
+• Se os dígitos são todos diferentes
+• Se a soma dos dois primeiros é igual ao terceiro
+• Se o número invertido (sem usar string) é múltiplo de 7*/
+
+#include <stdio.h>
+
+int main() 
+{
+    int numero,
+    centena = 0, 
+    dezena = 0, 
+    unidade = 0,
+    sobra,
+    numeroInvertido;
+
+    printf("Insira um número com três dígitos(100 à 999):");
+    scanf("%d",&numero);
+
+
+    if (numero < 100 || numero > 999){  // Confirma se tem três dígitos
+        printf("\nForneça um número com três digitos!!!\n");
+    }    
+    else{
+    
+    sobra = numero;
+
+    while (sobra >= 100){ //Separa as centenas
+        sobra = sobra - 100;
+        centena = centena + 1;
+    }
+        while (sobra >= 10){ //Separa as dezenas
+            sobra = sobra - 10;
+            dezena = dezena + 1;
+        }    
+            unidade = sobra; // o que sobrou, unidade
+    
+
+    if (centena != dezena && centena != unidade && dezena != unidade){
+    printf("\nOs dígitos são diferentes.\n"); 
+}   else{ 
+            if (centena == dezena) 
+            printf("\nCentena e dezena são iguais.\n");
+            
+                    if (centena == unidade) 
+                    printf("\nCentena e unidade são iguais.\n");
+                    
+                            if (dezena == unidade) 
+                            printf("\nDezena e unidade são iguais.\n");
+}
+            
+            
+
+    if ((centena + dezena) == unidade) { //Confere se a soma dos dois primeiros = o terceiro
+    printf("\nO primeiro + o segundo dígito é igual ao terceiro.\n");
+}           else{
+            printf("\nO primeiro + o segundo dígito não é igual ao terceiro.\n");
+    }
+
+    
+    numeroInvertido = unidade * 100 + dezena * 10 + centena; // inverte o número
+
+    if (numeroInvertido % 7 == 0) { //Conferindo se é multiplo de 7
+    printf("\nO número invertido é múltiplo de 7.\n");
+}           else {
+            printf("\nO número invertido NÃO é múltiplo de 7.\n");
+}
+}
+    return 0;
+}
