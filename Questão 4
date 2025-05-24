@@ -1,0 +1,70 @@
+/*As tarifas de certo parque de estacionamento são as seguintes:
+• 1a e 2a hora - R$ 1,00 cada
+• 3a e 4a hora - R$ 1,40 cada
+• 5a hora e seguintes - R$ 2,00 cada
+O número de horas a pagará e sempre inteiro e arredondado por excesso. Deste modo, quem
+estacionar durante 61 minutos pagara por duas horas, que é o mesmo que pagaria se tivesse
+permanecido 120 minutos. Os momentos de chegada ao parque e partida deste são apresentados na
+forma de pares de inteiros, representando horas e minutos. Por exemplo, o par 12 50 representa
+“dez para a uma da tarde”. Pretende-se criar um programa que, lidos pelo teclado os momentos de
+chegada e de partida, escreva na tela o preço cobrado pelo estacionamento. Admite-se que a
+chegada e a partida se dão com intervalo não superior a 24 horas. Portanto, se uma dada hora de
+chegada for superior a da partida, isso não é uma situação de erro, antes significará que a partida
+ocorreu no dia seguinte ao da chegada.*/
+
+#include <stdio.h>
+
+int main() {
+    int horaChegada, 
+        minutoChegada,
+        horaSaida, 
+        minutoSaida,
+        totalMinutos,
+        horasPagas = 0,
+        totalChegada,
+        totalSaida;
+    float valor = 0.0;
+
+
+    printf("Forneça a hora e o minuto da chegada:\n");
+    scanf("%d %d", &horaChegada, &minutoChegada);
+        
+
+    printf("Digite a hora e minuto da partida:\n");
+    scanf("%d %d", &horaSaida, &minutoSaida);
+
+    
+    totalChegada = horaChegada * 60 + minutoChegada;//Converter horas em minutos
+    totalSaida = horaSaida * 60 + minutoSaida;
+
+    
+    if(totalSaida >= totalChegada){ //Total de minutos estacionado(quando no mesmo dia)
+        totalMinutos = totalSaida - totalChegada;
+    } 
+        else{
+        totalMinutos = (24 * 60 - totalChegada) + totalSaida;//Quando a saída é no dia seguinte
+        }
+
+    
+    horasPagas = totalMinutos / 60;//Numero de horas pagas e arredondando minutos pra +1 hora
+    if(totalMinutos % 60 != 0){
+        horasPagas = horasPagas + 1;
+    }
+
+    
+    if(horasPagas <= 2){ // 1a e 2a horas
+        valor = horasPagas * 1.00;
+        
+    }   else 
+        if(horasPagas <= 4){ // 3a e 4a horas
+        valor = 2 * 1.00 + (horasPagas - 2) * 1.40;
+        
+    }       else{ // Acima de 4 horas
+            valor = 2 * 1.00 + 2 * 1.40 + (horasPagas - 4) * 2.00;
+    }
+
+    printf("Tempo total: %d minutos (%d horas pagas).\n", totalMinutos, horasPagas);
+    printf("Valor a pagar: R$ %.2f\n",valor);
+
+    return 0;
+}
