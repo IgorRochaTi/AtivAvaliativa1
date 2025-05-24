@@ -1,0 +1,58 @@
+/*Leia a nota e o número de faltas de um aluno, e escreva seu conceito. De acordo com a tabela
+abaixo, quando o aluno tem mais de 20 faltas ocorre uma redução de conceito.
+NOTA            Conceito (Até 20 Faltas)    Conceito (Mais de 20 Faltas)
+9.0 até 10.0           A                                  B
+7.5 até 8.9            B                                  C
+5.0 até 7.4            C                                  D
+4.0 até 4.9            D                                  E
+0.0 até 3.9            E                                  E          */
+
+#include <stdio.h>
+
+int main()
+{
+    float nota,faltas;
+    char conceito;
+
+    printf("Forneça sua nota:");
+    scanf("%f",&nota);
+    printf("Quantas vezes você faltou?:");
+    scanf("%f",&faltas);
+    
+/*até 20 faltas*/
+    if (nota >= 9.0 && faltas <= 20){
+        conceito='A';}
+        else
+        if(nota >= 7.5 && faltas <= 20){
+        conceito='B';}
+            else
+            if(nota >= 5.0 && faltas <= 20){
+            conceito='C';}
+                else
+                if(nota >= 4.0 && faltas <= 20){
+                conceito='D';}
+                    else
+                    if(nota >= 0.0 && faltas <= 20){
+                    conceito='E';}
+
+/*mais de 20 faltas*/    
+    if (nota >= 9.0 && faltas >= 20){
+        conceito='B';}
+        else
+        if(nota >= 7.5 && faltas >= 20){
+        conceito='C';}
+            else
+            if(nota >= 5.0 && faltas >= 20){
+            conceito='D';}
+                else
+                if(nota >= 4.0 && faltas >= 20){
+                conceito='E';}
+                    else
+                    if(nota >= 0.0 && faltas >= 20){
+                    conceito='E';}
+            
+ 
+
+    printf("Seu conceito é: %c",conceito);
+    return 0;
+}
